@@ -97,11 +97,19 @@ CREATE  TABLE IF NOT EXISTS `Universidad`.`Asignacion` (
   `nombrealumno` VARCHAR(45) NOT NULL ,
   `nombrecurso` VARCHAR(45) NOT NULL ,
   `idsemestre` INT NOT NULL ,
-  PRIMARY KEY (`carnet`, `idcurso`, `idsemestre`) ,
+  `idcarreras` INT NOT NULL ,
+  PRIMARY KEY (`carnet`, `idcurso`, `idsemestre`,`idcarreras`) ,
   INDEX `fk_carnet_alumno` (`carnet` ASC) ,
   INDEX `fk_curso_asig` (`idcurso` ASC) ,
   INDEX `fk_semestreasig` (`idsemestre` ASC) ,
+  INDEX `fk_carrerasu` (`idcarreras` ASC) ,
+
   CONSTRAINT `fk_carnet_alumno`
+    FOREIGN KEY (`carnet` )
+    REFERENCES `Universidad`.`Alumnos` (`carnet` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_carrerasu`
     FOREIGN KEY (`carnet` )
     REFERENCES `Universidad`.`Alumnos` (`carnet` )
     ON DELETE NO ACTION
