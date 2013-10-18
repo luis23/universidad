@@ -36,6 +36,36 @@ class Manejador {
       }
     }
 
+    function crearCatedratico($idcatedratico, $nombre, $correo, $telefono) {
+      $this->con->conectar();
+      $this->idcatedratico=$idcatedratico;
+      $this->nombre=$nombre;
+      $this->correo=$correo;
+      $this->telefono=$telefono;
+      $this->query = "INSERT INTO Catedraticos (idcatedratico, nombre, correo, telefono) VALUES ('".$this->idcatedratico."', '".$this->nombre."', '".$this->correo."', ".$this->telefono.");";
+
+      $this->resultadoss = mysql_query($this->query);
+      if ($this->resultadoss) {
+          return true;
+      } else {
+          return mysql_error();
+      }
+    }
+
+    function crearUsuario($usuario,$clave){
+      $this->con->conectar();
+      $this->usuario=$usuario;
+      $this->clave=$clave;
+
+      $this->query="INSERT INTO Usuario (login,password) VALUES('".$this->usuario."','".$this->clave."')";
+      $this->resultado=mysql_query($this->query);
+      if ($this->resultadoss) {
+          return true;
+      } else {
+          return mysql_error();
+      }
+    }
+
     function verUniversidades() {
       $this->con->conectar();
       $this->query = "SELECT nombre FROM Universidad;";
@@ -67,6 +97,7 @@ class Manejador {
       $this->resultado=mysql_query($this->query);
       return $this->resultado;
     }
+
 
     function verIdPorNombreSede($nombre){
       $this->con->conectar();
