@@ -9,6 +9,8 @@ USE `Universidad` ;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Universidad`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Universidad` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Universidad` (
   `idunivrersidad` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
@@ -19,6 +21,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Campus_Ext`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Campus_Ext` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Campus_Ext` (
   `idext` INT NOT NULL ,
   `iduniversidad` INT NOT NULL ,
@@ -36,6 +40,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Alumnos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Alumnos` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Alumnos` (
   `carnet` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
@@ -55,6 +61,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Cursos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Cursos` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Cursos` (
   `idcurso` INT NOT NULL AUTO_INCREMENT ,
   `curso` VARCHAR(45) NOT NULL ,
@@ -66,6 +74,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Semestre`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Semestre` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Semestre` (
   `idsemestre` INT NOT NULL ,
   `nombre` VARCHAR(45) NULL ,
@@ -79,6 +89,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Asignacion`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Asignacion` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Asignacion` (
   `carnet` INT NOT NULL ,
   `idcurso` INT NOT NULL ,
@@ -110,6 +122,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Evaluacion`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Evaluacion` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Evaluacion` (
   `idevaluacion` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
@@ -121,6 +135,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Notas`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Notas` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Notas` (
   `idcurso` INT NOT NULL ,
   `nombrecurso` VARCHAR(45) NOT NULL ,
@@ -148,6 +164,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Carrera`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Carrera` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Carrera` (
   `idcarrera` INT NOT NULL AUTO_INCREMENT ,
   `idext` INT NOT NULL ,
@@ -165,6 +183,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Pensum`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Pensum` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Pensum` (
   `idcarrera` INT NOT NULL ,
   `cod_curso` INT NOT NULL ,
@@ -189,6 +209,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Prequisitos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Prequisitos` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Prequisitos` (
   `id_carrera` INT NOT NULL ,
   `cod_cursopost` INT NOT NULL ,
@@ -212,6 +234,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Usuario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Usuario` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Usuario` (
   `login` VARCHAR(45) NOT NULL ,
   `password` VARCHAR(45) NOT NULL ,
@@ -222,6 +246,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Rol`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Rol` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Rol` (
   `Rol` INT NOT NULL ,
   `nombrerol` VARCHAR(45) NOT NULL ,
@@ -232,6 +258,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Universidad`.`Asignacion_Permisos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Asignacion_Permisos` ;
+
 CREATE  TABLE IF NOT EXISTS `Universidad`.`Asignacion_Permisos` (
   `login` VARCHAR(45) NOT NULL ,
   `rol` INT NOT NULL ,
@@ -248,6 +276,20 @@ CREATE  TABLE IF NOT EXISTS `Universidad`.`Asignacion_Permisos` (
     REFERENCES `Universidad`.`Rol` (`Rol` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Universidad`.`Catedraticos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Universidad`.`Catedraticos` ;
+
+CREATE  TABLE IF NOT EXISTS `Universidad`.`Catedraticos` (
+  `idcatedratico` INT NOT NULL ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  `correo` VARCHAR(45) NOT NULL ,
+  `telefono` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idcatedratico`) )
 ENGINE = InnoDB;
 
 
