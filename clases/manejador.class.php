@@ -114,6 +114,31 @@ class Manejador {
       return $this->nombredado;
     }
 
-}
+    function verAlumnos(){
+      $this->con->conectar();
+      $this->query = "SELECT * FROM Alumnos;";
+      $this->resultadoss = mysql_query($this->query);
+    }
 
+    function verAlumnosporCarnet($carnet){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->query = "SELECT * FROM Alumnos WHERE carnet = ".$this->carnet.";";
+      $this->resultadoss = mysql_query($this->query);
+    }
+
+    function verNotasPorAlumnoSemestre($carnet, $semestre){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->semestre=$semestre;
+      $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre =".$this->semestre.";";
+      $this->resultado=mysql_query($this->query);
+    }
+
+    function verNotasPorAlumno($carnet){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso;";
+      $this->resultado=mysql_query($this->query);
+    }
 ?>
