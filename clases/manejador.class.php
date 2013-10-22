@@ -114,6 +114,17 @@ class Manejador {
       return $this->nombredado;
     }
 
-}
+    function verAlumnos(){
+      $this->con->conectar();
+      $this->query = "SELECT * FROM Alumnos;";
+      $this->resultadoss = mysql_query($this->query);
+    }
+
+    function verAlumnosporCarnet($carnet){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->query = "SELECT * FROM Alumnos WHERE carnet = ".$this->carnet.";";
+      $this->resultadoss = mysql_query($this->query);
+    }
 
 ?>
