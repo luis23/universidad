@@ -141,4 +141,12 @@ class Manejador {
       $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso;";
       $this->resultado=mysql_query($this->query);
     }
+
+    function verDependenciaDeCursos($carnet,$semestre){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->semestre=$semestre;
+      $this->query = "SELECT COUNT(c.idcurso) FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre=".$this->semestre." and c.Nota=>61;";
+      $this->resultado=mysql_query($this->query);
+    }
 ?>
