@@ -8,10 +8,15 @@ class Manejador {
     private $con2;
 
     function __construct() {
-      $this->Usuario = "administrador";
-      $this->Clave = "admin";
-      $this->BaseDatos = "Universidad";
-      $this->con2 = new DBConexion($this->Usuario, $this->Clave);
+
+      if(empty($_SESSION['conexion'])){
+        $this->Usuario = "administrador";
+        $this->Clave = "admin";
+        $this->BaseDatos = "Universidad";
+        $this->con2 = new DBConexion($this->Usuario, $this->Clave);
+      }else{
+        $this->con= $_SESSION['conexion'];
+      }
     }
 
 
