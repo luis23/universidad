@@ -179,6 +179,13 @@ class Manejador {
       $this->resultadoss = mysql_query($this->query);
     }
 
+    function verAlumnosporNombre($nombre){
+      $this->con->conectar();
+      $this->nombre=$nombre;
+      $this->query = "SELECT * FROM Alumnos WHERE nombre LIKE '%".$this->nombre."%';";
+      $this->resultadoss = mysql_query($this->query);
+    }
+
     function verNotasPorAlumnoSemestre($carnet, $semestre){
       $this->con->conectar();
       $this->carnet=$carnet;
