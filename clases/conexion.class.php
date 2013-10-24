@@ -11,7 +11,7 @@ class conexion
 		$this->host="localhost";
 		$this->user=$user;
 		$this->pass=$pass;
-		$this->db="bdprograweb";
+		$this->db="Universidad";
 	}
 	function conectar(){
 		if(isset($_POST['enviar'])){

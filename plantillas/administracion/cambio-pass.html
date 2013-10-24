@@ -5,7 +5,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/assets/ico/favicon.png">
 
-    <title>UMES-UPA Sistema de control de notas</title>
+    <title>CAMBIO DE PASSWORD</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/dist/css/bootstrap.css" rel="stylesheet">
@@ -20,19 +20,47 @@
   <body>
 
     <div class="container">
-
-      <form class="form-signin" action="/paginas/universidad/plantillas/administracion/menu_catedratico.html">
+  <form class="form-signin" action="">
         <h2 class="form-signin-heading">UMES-UPA</h2>
-        <input type="text" class="form-control" placeholder="No. de carnet" autofocus="">
-        <input type="password" class="form-control" placeholder="Password">
-        <label class="checkbox">
-          <a target="_top" id="registro" href="/paginas/universidad/plantillas/administracion/registro.html">Registrate aqui</a>
-          <br>
-          <input type="checkbox" value="remember-me"> Remember me
-          
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
-      </form>
+
+		<label>
+			<font FACE="arial">
+				Correo Electronico
+			</font>
+		</label>
+		<br>
+		<input type="text" name="mail" maxlengh="100" size="20"></input>
+		<br>
+		<label>
+			<font FACE="arial">
+				password Actual
+			</font>
+		</label>
+		<br>
+		<input type="password" name="pass_A" maxlengh="100" size="20"></input>
+		<br>
+		<label>
+			<font FACE="arial">
+				Nuevo Password
+			</font>
+		</label>
+		<br>
+		<input type="password" name="nuevo" maxlengh="100" size="20"></input>
+		<br>
+		<label>
+			<font FACE="arial">
+				Confirmar Password
+			</font>
+		</label>
+		<br>
+		<input type="password" name="nuevo" maxlengh="100" size="20"></input>
+		<br>
+		<button>
+			<font FACE="arial">
+				Siguiente
+			</font>
+		</button>
+	</form>
 
     </div> <!-- /container -->
 

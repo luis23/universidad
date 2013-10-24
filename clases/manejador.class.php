@@ -10,8 +10,8 @@ class Manejador {
         /* $this->Usuario=$_POST['usuario'];;
           $this->Clave = $_POST['pass']; */
         $this->con=$_SESSION['conexion'];
-        $this->Usuario = "administrador";
-        $this->Clave = "admin";
+        $this->Usuario = "root";
+        $this->Clave = "gradiador23";
         $this->BaseDatos = "Universidad";
         if(empty($con)){
           $this->con = new DBConexion($this->Usuario, $this->Clave);
