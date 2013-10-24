@@ -33,9 +33,8 @@
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="#about">Acerca de...</a></li>
-            <li><a href="#contact">Contactenos</a></li>
+            <li class="active"><a href="/paginas/universidad/plantillas/alumnos/menu_de_alumnos.html">Inicio</a></li>
+            <li class="active"><a href="/paginas/universidad/index.html">Cerrar Sesion</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -44,36 +43,66 @@
     <div class="container">
       <br>
       <form class="form-horizontal" role="form">
-	<div class="form-group">
-	  <label for="carnet" class="col-lg-2 control-label">Carnet</label>
-	    <div class="col-lg-6">
-	      <input type="text" class="form-control" id="carnet" placeholder="Carnet">
-	    </div>
-	</div>
+        <div class="form-group">
+    <label for="carnet" class="col-lg-2 control-label">Numero de Carnet</label>
+      <div class="col-lg-6">
+        <input type="carnet" class="form-control" id="carnet" placeholder="123456">
+      </div>
+  </div>
 	<div class="form-group">
 	  <label for="nombre" class="col-lg-2 control-label">Nombre</label>
 	    <div class="col-lg-6">
-	      <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+	      <input type="text" class="form-control" id="nombre" placeholder="">
 	    </div>
 	</div>
+  <div class="form-group">
+    <label for="apellido" class="col-lg-2 control-label">Apellido</label>
+      <div class="col-lg-6">
+        <input type="text" class="form-control" id="nombre" placeholder="">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="Direccion" class="col-lg-2 control-label">Direccion</label>
+      <div class="col-lg-6">
+        <input type="Direccion" class="form-control" id="Direccion" placeholder="">
+      </div>
+  </div>
 	<div class="form-group">
-	  <label for="correo" class="col-lg-2 control-label">Correo</label>
+	  <label for="correo" class="col-lg-2 control-label">Correo Electronico</label>
 	    <div class="col-lg-6">
 	      <input type="email" class="form-control" id="correo" placeholder="alguien@ejemplo.com">
 	    </div>
 	</div>
+  <div class="form-group">
+    <label for="Telefono" class="col-lg-2 control-label">Telefono</label>
+      <div class="col-lg-6">
+        <input type="Telefono" class="form-control" id="Telefono" placeholder="xxxx-xxxx">
+      </div>
+  </div>
 	<div class="form-group">
 	  <label for="sede" class="col-lg-2 control-label">Sede</label>
 	    <div class="col-lg-6">
 	      <select class="form-control">
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-		<option>5</option>
+          <option>--seleccione una opcion--</option>
+		<option>1-Central Mesoamerica</option>
+		<option>2-Extencion de Amatitlan</option>
+	
 	      </select>
 	    </div>
 	</div>
+  <div class="form-group">
+    <label for="carrera" class="col-lg-2 control-label">Carrera</label>
+      <div class="col-lg-6">
+        <select class="form-control">
+          <option>--seleccione una opcion--</option>
+    <option>Ingenieria en Informatica</option>
+    <option>Derecho</option>
+    <option>Arquitectura</option>
+    <option>Administracion de Empresas</option>
+  
+        </select>
+      </div>
+  </div>
 	<div class="form-group">
 	  <div class="col-lg-offset-2 col-lg-6">
 	    <button type="submit" class="btn btn-primary">Crear Alumno</button>
