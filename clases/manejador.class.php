@@ -5,19 +5,52 @@ require_once 'conexionpractica.class.php';
 class Manejador {
 
     private $con;
+    private $con2;
 
     function __construct() {
-        /* $this->Usuario=$_POST['usuario'];;
-          $this->Clave = $_POST['pass']; */
-        $this->con=$_SESSION['conexion'];
+      $this->Usuario = "administrador";
+      $this->Clave = "admin";
+      $this->BaseDatos = "Universidad";
+      $this->con2 = new DBConexion($this->Usuario, $this->Clave);
+    }
+
+
+    function loginUsuario($usuario,$pass){
+      $this->usuario=$usuario;
+      $this->password=$pass;
+
+      $this->con2->conectar();
+      $this->query="SELECT * FROM Usuario WHERE login='".$this->usuario."' and password='".$this->pass"';" ;
+      $this->resultadoss = mysql_query($this->query);
+      $this->query2="SELECT * FROM Asignacion_Permisos WHERE login='".$this->usuario."';";
+      $this->resultados2 = mysql_query($this->query);
+      $this->row = mysql_fetch_array($this->resultados2);
+      if($this->row['rol']===1 || $this->row['rol']==="1"){
         $this->Usuario = "administrador";
         $this->Clave = "admin";
         $this->BaseDatos = "Universidad";
-        if(empty($con)){
-          $this->con = new DBConexion($this->Usuario, $this->Clave);
-          $_SESSION['conexion']=$this->con;
-        }
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else if($this->row['rol']===2 || $this->row['rol']==="2"){
+        $this->Usuario = "Profesor";
+        $this->Clave = "catedratico";
+        $this->BaseDatos = "Universidad";
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else if ($this->row['rol']===3 || $this->row['rol']==="3") {
+        $this->Usuario = "Alumno";
+        $this->Clave = "alumnoumes";
+        $this->BaseDatos = "Universidad";
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else{
+        return false;
+      }
     }
+
 
     function crearAlumno($carnet, $nombre, $direccion, $correo, $sede) {
       $this->con->conectar();
@@ -58,6 +91,20 @@ class Manejador {
       $this->clave=$clave;
 
       $this->query="INSERT INTO Usuario (login,password) VALUES('".$this->usuario."','".$this->clave."')";
+      $this->resultado=mysql_query($this->query);
+      if ($this->resultadoss) {
+          return true;
+      } else {
+          return mysql_error();
+      }
+    }
+    function crearPermiso($login , $tipousuario){
+      $this->con->conectar();
+      $this->usuario=$login;
+      $this->tipo=$tipousuario;
+      //$this->tipo=$tipousuario; tiene que ser el int que si es un catedratico es =2 admin=1  alumno=3 ese es un numero elq ue tiene 
+      //que ingresar en tiposuario
+      $this->query="INSERT INTO Asignacion_Permisos (login,rol) VALUES('".$this->usuario."',".$this->tipo.")";
       $this->resultado=mysql_query($this->query);
       if ($this->resultadoss) {
           return true;
