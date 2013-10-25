@@ -4,10 +4,10 @@
 <body>
 <form method="POST">
 <?php 
-include "conexion.class.php";
+include "conexionpractica.class.php";
 $user=$_POST['nombres'];
 $pass=$_POST['contraseña'];
-$conexion=new conexion($user,$pass);
+$conexion=new DBConexion($user,$pass);
 
 $conexion->conectar();
 
