@@ -4,7 +4,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Ingreso de nuevos alumnos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../assets/dist/css/bootstrap.css" rel="stylesheet">
@@ -33,7 +33,7 @@
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inicio</a></li>
+            <li class="active"><a href="/paginas/universidad/index.html">Inicio</a></li>
             <li><a href="#about">Acerca de...</a></li>
             <li><a href="#contact">Contactenos</a></li>
           </ul>
@@ -42,19 +42,30 @@
     </div>
 
     <div class="container">
-
-      <div class="menu-principal">
-        <h1>Bienvenidos al sitio de administracion de Notas de la UMES-UPA</h1>
-        <p class="lead">Seleccione la opcion del menu que desea utilizar</p>
-        <p> es es el menu de los alumnos</p>
-<a target="_top" id="alumnos" href="/paginas/universidad/plantillas/alumnos/alumnos.html"> Alumnos</a>
-<a target="_top" id="asignacion" href="/paginas/universidad/plantillas/cursos/asignacion.html">Asignacion de Cursos</a>
-<a target="-top" id="lista de usuarios" href="php/usuarios.php">informacion del el alumno</a>
-<a target="_top" id="cerrar sesion"     href="/paginas/universidad/index.html">cerrar sesion</a>
-
+      <br>
+      <form class="form-horizontal" role="form">
+	<div class="form-group">
+	  <label for="carnet" class="col-lg-2 control-label">Carnet</label>
+	    <div class="col-lg-6">
+	      <input type="text" class="form-control" id="carnet" placeholder="Carnet">
+	   </div>
+	</div>
+	 <label for="Password" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-6">
+      <input type="password" class="form-control" id="password" placeholder="Password">
       </div>
-
-
+  </div> <label for="Repita el Password" class="col-lg-2 control-label">Repita El Password</label>
+      <div class="col-lg-6">
+         <input type="password" class="form-control" id="Password" placeholder="Password">
+      </div>
+      </div>
+  </div>
+	<div class="form-group">
+	  <div class="col-lg-offset-2 col-lg-6">
+	    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+	  </div>
+	</div>
+      </form>
     </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript
