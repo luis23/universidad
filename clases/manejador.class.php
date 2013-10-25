@@ -102,7 +102,6 @@ class Manejador {
       $this->con->conectar();
       $this->usuario=$usuario;
       $this->clave=$clave;
-
       $this->query="INSERT INTO Usuario (login,password) VALUES('".$this->usuario."','".$this->clave."')";
       $this->resultado=mysql_query($this->query);
       if ($this->resultadoss) {
@@ -213,8 +212,20 @@ class Manejador {
       $this->con->conectar();
       $this->carnet=$carnet;
       $this->semestre=$semestre;
-      $this->query = "SELECT COUNT(c.idcurso) FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre=".$this->semestre." and c.Nota=>61;";
+      $this->query = "SELECT COUNT(c.idcurso) as cursos FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre=".$this->semestre." and c.Nota=>61;";
       $this->resultado=mysql_query($this->query);
+    }
+
+    function asignarCurso($carnet,$idcurso,$nombrealumno,$nombrecurso$,$idsemestre,$idcarrera){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->idcurso=$idcurso;
+      $this->nombrealumno=$nombrealumno;
+      $this->nombrecurso=$nombrecurso;
+      $this->idsemestre=$idsemestre;
+      $this->idcarrera=$idcarrera;
+      $this->query = "INSERT INTO Asignacion (carnet, idcurso,nombrealumno,nombrecurso,idsemestre,idcarreras) VALUES(".$this->carnet.",".$this->idcurso.",'".$this->nombrealumno."', '".$this->nombrecurso."',".$this->idsemestre.",".$this->idcarrera.");";
+      $this->resultado=mysql_query($this->query); 
     }
   }
 ?>
