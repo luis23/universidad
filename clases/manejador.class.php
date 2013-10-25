@@ -5,19 +5,65 @@ require_once 'conexionpractica.class.php';
 class Manejador {
 
     private $con;
+    private $con2;
 
     function __construct() {
+<<<<<<< HEAD
         /* $this->Usuario=$_POST['usuario'];;
           $this->Clave = $_POST['pass']; */
         $this->con=$_SESSION['conexion'];
+        $this->Usuario = "root";
+        $this->Clave = "gradiador23";
+=======
+
+      if(empty($_SESSION['conexion'])){
         $this->Usuario = "administrador";
         $this->Clave = "admin";
         $this->BaseDatos = "Universidad";
-        if(empty($con)){
-          $this->con = new DBConexion($this->Usuario, $this->Clave);
-          $_SESSION['conexion']=$this->con;
-        }
+        $this->con2 = new DBConexion($this->Usuario, $this->Clave);
+      }else{
+        $this->con= $_SESSION['conexion'];
+      }
     }
+
+
+    function loginUsuario($usuario,$pass){
+      $this->usuario=$usuario;
+      $this->password=$pass;
+
+      $this->con2->conectar();
+      $this->query="SELECT * FROM Usuario WHERE login='".$this->usuario."' and password='".$this->pass"';" ;
+      $this->resultadoss = mysql_query($this->query);
+      $this->query2="SELECT * FROM Asignacion_Permisos WHERE login='".$this->usuario."';";
+      $this->resultados2 = mysql_query($this->query);
+      $this->row = mysql_fetch_array($this->resultados2);
+      if($this->row['rol']===1 || $this->row['rol']==="1"){
+        $this->Usuario = "administrador";
+        $this->Clave = "admin";
+>>>>>>> upstream/master
+        $this->BaseDatos = "Universidad";
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else if($this->row['rol']===2 || $this->row['rol']==="2"){
+        $this->Usuario = "Profesor";
+        $this->Clave = "catedratico";
+        $this->BaseDatos = "Universidad";
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else if ($this->row['rol']===3 || $this->row['rol']==="3") {
+        $this->Usuario = "Alumno";
+        $this->Clave = "alumnoumes";
+        $this->BaseDatos = "Universidad";
+        $this->con = new DBConexion($this->Usuario, $this->Clave);
+        $_SESSION['conexion']=$this->con;
+        return true;
+      }else{
+        return false;
+      }
+    }
+
 
     function crearAlumno($carnet, $nombre, $direccion, $correo, $sede) {
       $this->con->conectar();
@@ -58,6 +104,20 @@ class Manejador {
       $this->clave=$clave;
 
       $this->query="INSERT INTO Usuario (login,password) VALUES('".$this->usuario."','".$this->clave."')";
+      $this->resultado=mysql_query($this->query);
+      if ($this->resultadoss) {
+          return true;
+      } else {
+          return mysql_error();
+      }
+    }
+    function crearPermiso($login , $tipousuario){
+      $this->con->conectar();
+      $this->usuario=$login;
+      $this->tipo=$tipousuario;
+      //$this->tipo=$tipousuario; tiene que ser el int que si es un catedratico es =2 admin=1  alumno=3 ese es un numero elq ue tiene 
+      //que ingresar en tiposuario
+      $this->query="INSERT INTO Asignacion_Permisos (login,rol) VALUES('".$this->usuario."',".$this->tipo.")";
       $this->resultado=mysql_query($this->query);
       if ($this->resultadoss) {
           return true;
@@ -114,6 +174,46 @@ class Manejador {
       return $this->nombredado;
     }
 
-}
+    function verAlumnos(){
+      $this->con->conectar();
+      $this->query = "SELECT * FROM Alumnos;";
+      $this->resultadoss = mysql_query($this->query);
+    }
 
+    function verAlumnosporCarnet($carnet){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->query = "SELECT * FROM Alumnos WHERE carnet = ".$this->carnet.";";
+      $this->resultadoss = mysql_query($this->query);
+    }
+
+    function verAlumnosporNombre($nombre){
+      $this->con->conectar();
+      $this->nombre=$nombre;
+      $this->query = "SELECT * FROM Alumnos WHERE nombre LIKE '%".$this->nombre."%';";
+      $this->resultadoss = mysql_query($this->query);
+    }
+
+    function verNotasPorAlumnoSemestre($carnet, $semestre){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->semestre=$semestre;
+      $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre =".$this->semestre.";";
+      $this->resultado=mysql_query($this->query);
+    }
+
+    function verNotasPorAlumno($carnet){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso;";
+      $this->resultado=mysql_query($this->query);
+    }
+
+    function verDependenciaDeCursos($carnet,$semestre){
+      $this->con->conectar();
+      $this->carnet=$carnet;
+      $this->semestre=$semestre;
+      $this->query = "SELECT COUNT(c.idcurso) FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre=".$this->semestre." and c.Nota=>61;";
+      $this->resultado=mysql_query($this->query);
+    }
 ?>

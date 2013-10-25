@@ -13,23 +13,23 @@
     <!-- Custom styles for this template -->
     <link href="assets/dist/css/login.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
+  <!-- nesesario:que a la hora de colocar el carnet y pass me mande ya sea a el menu de alumno o catedratico si no que me regrese a la pagina nuevamente -->
+
   </head>
 
   <body>
 
     <div class="container">
 
-      <form class="form-signin" action="clases/login.php">
+      <form class="form-signin" action="/paginas/universidad/plantillas/administracion/menu_catedratico.html">
         <h2 class="form-signin-heading">UMES-UPA</h2>
         <input type="text" class="form-control" placeholder="No. de carnet" autofocus="">
         <input type="password" class="form-control" placeholder="Password">
         <label class="checkbox">
+          <a target="_top" id="registro" href="/paginas/universidad/plantillas/administracion/registro.html">Registrate aqui</a>
+          <br>
           <input type="checkbox" value="remember-me"> Remember me
+          
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
       </form>
