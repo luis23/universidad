@@ -7,7 +7,7 @@ class DBConexion {
     private $user;
     private $password;
     
-    function __construct($usuario, $pass) {
+    function DBConexion ($usuario, $pass) {
         $this->db = "Universidad";
         $this->dbhost = "localhost";
         $this->user = $usuario;
@@ -17,6 +17,7 @@ class DBConexion {
     function conectar() {
         if (!($this->con = @mysql_connect($this->dbhost, $this->user, $this->password))) {
             echo"<OPTION> [:(] Error al conectar a la base de datos</OPTION>";
+                echo "<meta http-equiv="Refresh" content="5;url="http://localhost/webs/universidad/plantillas/cursos/ver_cursos.html">";
             exit();
         }
         if (!@mysql_select_db($this->db, $this->con)) {
