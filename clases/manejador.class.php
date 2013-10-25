@@ -44,21 +44,21 @@ class Manejador {
         $this->BaseDatos = "Universidad";
         $this->con = new DBConexion($this->Usuario, $this->Clave);
         $_SESSION['conexion']=$this->con;
-        return true;
+        return 1;
       }else if($this->row['rol']===2 || $this->row['rol']==="2"){
         $this->Usuario = "Profesor";
         $this->Clave = "catedratico";
         $this->BaseDatos = "Universidad";
         $this->con = new DBConexion($this->Usuario, $this->Clave);
         $_SESSION['conexion']=$this->con;
-        return true;
+        return 2;
       }else if ($this->row['rol']===3 || $this->row['rol']==="3") {
         $this->Usuario = "Alumno";
         $this->Clave = "alumnoumes";
         $this->BaseDatos = "Universidad";
         $this->con = new DBConexion($this->Usuario, $this->Clave);
         $_SESSION['conexion']=$this->con;
-        return true;
+        return 3;
       }else{
         return false;
       }
