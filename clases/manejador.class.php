@@ -177,6 +177,7 @@ class Manejador {
       $this->con->conectar();
       $this->query = "SELECT * FROM Alumnos;";
       $this->resultadoss = mysql_query($this->query);
+      return $this->resultadoss;
     }
 
     function verAlumnosporCarnet($carnet){
@@ -184,6 +185,7 @@ class Manejador {
       $this->carnet=$carnet;
       $this->query = "SELECT * FROM Alumnos WHERE carnet = ".$this->carnet.";";
       $this->resultadoss = mysql_query($this->query);
+      return $this->resultadoss;
     }
 
     function verAlumnosporNombre($nombre){
@@ -191,6 +193,7 @@ class Manejador {
       $this->nombre=$nombre;
       $this->query = "SELECT * FROM Alumnos WHERE nombre LIKE '%".$this->nombre."%';";
       $this->resultadoss = mysql_query($this->query);
+      return $this->resultadoss;
     }
 
     function verNotasPorAlumnoSemestre($carnet, $semestre){
@@ -199,6 +202,7 @@ class Manejador {
       $this->semestre=$semestre;
       $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre =".$this->semestre.";";
       $this->resultado=mysql_query($this->query);
+      return $this->resultado;
     }
 
     function verNotasPorAlumno($carnet){
@@ -206,7 +210,9 @@ class Manejador {
       $this->carnet=$carnet;
       $this->query = "SELECT a.cod_curso, b.curso, a.semestre, c.Nota FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso;";
       $this->resultado=mysql_query($this->query);
+      return $this->resultado;
     }
+
 
     function verDependenciaDeCursos($carnet,$semestre){
       $this->con->conectar();
@@ -214,6 +220,7 @@ class Manejador {
       $this->semestre=$semestre;
       $this->query = "SELECT COUNT(c.idcurso) as cursos FROM Pensum a, Cursos b, Notas c WHERE c.carnet = ".$this->carnet." and a.cod_curso = b.idcurso and a.semestre=".$this->semestre." and c.Nota=>61;";
       $this->resultado=mysql_query($this->query);
+      return $this->resultado;
     }
 
     function asignarCurso($carnet,$idcurso,$nombrealumno,$nombrecurso$,$idsemestre,$idcarrera){
@@ -226,6 +233,7 @@ class Manejador {
       $this->idcarrera=$idcarrera;
       $this->query = "INSERT INTO Asignacion (carnet, idcurso,nombrealumno,nombrecurso,idsemestre,idcarreras) VALUES(".$this->carnet.",".$this->idcurso.",'".$this->nombrealumno."', '".$this->nombrecurso."',".$this->idsemestre.",".$this->idcarrera.");";
       $this->resultado=mysql_query($this->query); 
+      return $this->resultado;
     }
   }
 ?>
